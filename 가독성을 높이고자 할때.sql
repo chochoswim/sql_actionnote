@@ -8,3 +8,14 @@ SELECT
 FROM daily_kpi
 GROUP BY dt
 ORDER BY dt
+
+
+-- 열의 수를 모르는 경우
+
+SELECT
+  purchase_id
+  , concat_ws(',', collect_list(product_id)) AS product_ids
+  , SUM(price) AS amount
+FROM purchase_detail_log
+GROUP BY purchase_id
+ORDER BY purchase_id
